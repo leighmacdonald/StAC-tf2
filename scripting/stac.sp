@@ -75,6 +75,8 @@ public Plugin myinfo =
 #include "stac/stac_globals.sp"
 // misc funcs used around the plugin
 #include "stac/stac_stocks.sp"
+// Notification forward
+#include "stac/stac_notify.sp"
 // stac cvars
 #include "stac/stac_cvars.sp"
 // admin commands
@@ -95,6 +97,7 @@ public Plugin myinfo =
 #include "stac/stac_memory.sp"
 // if it ain't broke, don't fix it. jtanz has written a great backtrack patch.
 #include "stac/jay_backtrack_patch.sp"
+
 
 /********** PLUGIN LOAD & UNLOAD **********/
 
@@ -207,6 +210,12 @@ public void OnPluginEnd()
     OnMapEnd();
 }
 
+public APLRes AskPluginLoad2(Handle plugin, bool late, char[] error, int err_max)
+{
+    RegPluginLibrary("stac");
+
+    return APLRes_Success;
+}
 
 /********** ONGAMEFRAME **********/
 
